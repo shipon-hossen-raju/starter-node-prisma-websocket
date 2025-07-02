@@ -1,0 +1,46 @@
+Web Socket setup & only chating system:
+
+
+open postman:
+
+1. client "New" button
+2. select "WebSocket"
+4. use url or ip & port: ws://localhost:5004
+5. use this command 1 by 1: 
+paste the message box:
+{
+"event": "authenticate",
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGFhNzQxNzdmOWNkM2UwMGQ5ZTg1ZCIsImVtYWlsIjoic2hpcG9uLnNlcnZpY2VzQGdtYWlsLmNvbSIsInJvbGUiOiJDT05TVU1FUiIsImlhdCI6MTc1MDQ3ODA5OCwiZXhwIjoxNzUzMDcwMDk4fQ.ySR3hG_mTGs1tbgj0mgRB_VZwyh3hzzcMO5eGpqaKuI"
+ }
+
+
+//  {
+//    "event": "message",
+//    "receiverId": "684aa74177f9cd3e00d9e85d",
+//     "message": "Hello, USER2.",
+//    "images": [] // Optional array of image URLs
+// }
+
+
+// {
+//   "event": "fetchChats",
+//   "receiverId": "678b1bff50e330f98176ce03"
+// }
+
+
+
+// {
+//   "event": "unReadMessages",
+//   "receiverId": "678b1bff50e330f98176ce03"
+// }
+
+
+//  {
+//  "event":"onlineUsers"
+// }
+
+
+
+// {
+//     "event":"messageList"
+// }

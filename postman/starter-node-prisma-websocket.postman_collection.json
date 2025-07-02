@@ -1,0 +1,1063 @@
+{
+	"info": {
+		"_postman_id": "b9860296-db98-4fc9-b629-119d808b0e5b",
+		"name": "Kerry Soeun",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45041885",
+		"_collection_link": "https://shiponhossenraju.postman.co/workspace/Kerry-Soeun~037b1045-ed54-4639-9396-0f929621a58d/collection/45041885-b9860296-db98-4fc9-b629-119d808b0e5b?action=share&source=collection_link&creator=45041885"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Shipon Hossen\",\r\n    \"lastName\": \"Raju\",\r\n    \"email\": \"shipon.services@gmail.com\",\r\n    \"role\": \"USER\", // 'ADMIN' | 'USER' | 'DRIVER'\r\n    \"phoneNumber\": \"5665454464\",\r\n    \"password\": \"12341234\",\r\n    \"confirmPassword\": \"12341234\",\r\n    \"fcmToken\": \"\",\r\n    \"lat\": 0,\r\n    \"lon\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApi}}/users/register",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Shipon Hossen\",\r\n    \"lastName\": \"Raju\",\r\n    \"email\": \"shipon.services@gmail.com\",\r\n    \"role\": \"USER\", // 'ADMIN' | 'USER' | 'DRIVER'\r\n    \"phoneNumber\": \"5665454464\",\r\n    \"password\": \"12341234\",\r\n    \"confirmPassword\": \"12341234\",\r\n    \"fcmToken\": \"\",\r\n    \"lat\": 0,\r\n    \"lon\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/users/register",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "486"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e6-m4oVDDI6utNFgk7llYeP6cEl1bQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:46:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User Registered successfully!\",\n    \"data\": {\n        \"result\": {\n            \"id\": \"6864c7ad889960a49c8d62b7\",\n            \"email\": \"shipon.services@gmail.com\",\n            \"role\": \"USER\",\n            \"createdAt\": \"2025-07-02T05:46:21.965Z\",\n            \"updatedAt\": \"2025-07-02T05:46:21.965Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjRjN2FkODg5OTYwYTQ5YzhkNjJiNyIsImVtYWlsIjoic2hpcG9uLnNlcnZpY2VzQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzUxNDM1MTgyLCJleHAiOjE3NTQwMjcxODJ9.Xt9kSv-F10PdtyGZ4heN2VZVoXE1UIzieb4w27yCCOM\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test1@gmail.com\",\r\n    \"role\": \"USER\", // 'ADMIN' | 'USER' | 'DRIVER'\r\n    \"password\": \"12341234\",\r\n    \"fcmToken\": \"\",\r\n    \"lat\": 0,\r\n    \"lon\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApi}}/auth/login",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"role\": \"USER\", // 'ADMIN' | 'USER' | 'DRIVER'\r\n    \"password\": \"12341234\",\r\n    \"fcmToken\": \"\",\r\n    \"lat\": 0,\r\n    \"lon\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/login",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjRjMWI3MzU4Y2M1YTc3MThiZjUwZSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc1MTQzNTEwNiwiZXhwIjoxNzU0MDI3MTA2fQ.6Xj9SuMWdxW0mMooE03hqjzeigeoB1kHsiklyoSUXeo; Path=/; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "543"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21f-AGXJpqksaEnCDO6Icmm/mMN72nM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:45:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User logged in successfully\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjRjMWI3MzU4Y2M1YTc3MThiZjUwZSIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc1MTQzNTEwNiwiZXhwIjoxNzU0MDI3MTA2fQ.6Xj9SuMWdxW0mMooE03hqjzeigeoB1kHsiklyoSUXeo\",\n        \"userData\": {\n            \"id\": \"6864c1b7358cc5a7718bf50e\",\n            \"firstName\": \"Shipon Hossen\",\n            \"lastName\": \"Raju\",\n            \"email\": \"test@gmail.com\",\n            \"role\": \"USER\",\n            \"createdAt\": \"2025-07-02T05:20:55.083Z\",\n            \"updatedAt\": \"2025-07-02T05:20:55.083Z\",\n            \"status\": \"ACTIVE\",\n            \"profileImage\": \"\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Login - Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test1@gmail.com\",\r\n    \"role\": \"USER\", // 'ADMIN' | 'USER' | 'DRIVER'\r\n    \"password\": \"12341234\",\r\n    \"fcmToken\": \"\",\r\n    \"lat\": 0,\r\n    \"lon\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/login",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "507"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1fb-NVR8HogpKOD9SQ3z30WYfFhCBYA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:45:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"User not found! with this email test1@gmail.com\",\n    \"errorSources\": [\n        {\n            \"type\": \"ApiError\",\n            \"details\": \"User not found! with this email test1@gmail.com\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 404\n    },\n    \"stack\": \"Error: User not found! with this email test1@gmail.com\\n    at D:\\\\Projects\\\\Kerry-Soeun\\\\kerry-backend\\\\src\\\\app\\\\modules\\\\auth\\\\auth.service.ts:38:11\\n    at Generator.next (<anonymous>)\\n    at fulfilled (D:\\\\Projects\\\\Kerry-Soeun\\\\kerry-backend\\\\src\\\\app\\\\modules\\\\auth\\\\auth.service.ts:28:58)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApi}}/auth/login",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login - Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test1@gmail.com\",\r\n    \"role\": \"USER\", // 'ADMIN' | 'USER' | 'DRIVER'\r\n    \"password\": \"12341234\",\r\n    \"fcmToken\": \"\",\r\n    \"lat\": 0,\r\n    \"lon\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/login",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "507"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1fb-NVR8HogpKOD9SQ3z30WYfFhCBYA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:45:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"User not found! with this email test1@gmail.com\",\n    \"errorSources\": [\n        {\n            \"type\": \"ApiError\",\n            \"details\": \"User not found! with this email test1@gmail.com\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 404\n    },\n    \"stack\": \"Error: User not found! with this email test1@gmail.com\\n    at D:\\\\Projects\\\\Kerry-Soeun\\\\kerry-backend\\\\src\\\\app\\\\modules\\\\auth\\\\auth.service.ts:38:11\\n    at Generator.next (<anonymous>)\\n    at fulfilled (D:\\\\Projects\\\\Kerry-Soeun\\\\kerry-backend\\\\src\\\\app\\\\modules\\\\auth\\\\auth.service.ts:28:58)\"\n}"
+						},
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/login",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjRjMTFmM2FmZjQwYzIwODlhMjZlNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzUxNDM2MjgwLCJleHAiOjE3NTQwMjgyODB9.ozncQDng-9PjnNHKQIWgMdSfB8j0Qer37GOX8A2tA5Q; Path=/; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "540"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21c-zM7/YgxrpMWaP1q4quruiL9U8eg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 06:04:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User logged in successfully\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjRjMTFmM2FmZjQwYzIwODlhMjZlNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzUxNDM2MjgwLCJleHAiOjE3NTQwMjgyODB9.ozncQDng-9PjnNHKQIWgMdSfB8j0Qer37GOX8A2tA5Q\",\n        \"userData\": {\n            \"id\": \"6864c11f3aff40c2089a26e5\",\n            \"firstName\": \"Super\",\n            \"lastName\": \"Admin\",\n            \"email\": \"admin@gmail.com\",\n            \"role\": \"ADMIN\",\n            \"createdAt\": \"2025-07-02T05:18:23.015Z\",\n            \"updatedAt\": \"2025-07-02T05:18:23.015Z\",\n            \"status\": \"ACTIVE\",\n            \"profileImage\": \"\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset Password - otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"shipon.services@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApi}}/auth/forgot-password",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset Password - otp",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"shipon.services@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/forgot-password",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-d+uasI0bFHdLNpZo7aPf1QE6/UA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:47:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Check your email!\",\n    \"data\": {\n        \"message\": \"Reset password OTP sent to your email successfully\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"shipon.services@gmail.com\",\r\n    \"password\": \"12341234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApi}}/auth/reset-password",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"shipon.services@gmail.com\",\r\n    \"password\": \"12341234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/reset-password",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"reset-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-EFGL7lg52uhNrgKvW15v9DXw0FQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:50:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Password Reset!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{creator}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"12341234\",\r\n    \"oldPassword\": \"12345678\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApi}}/auth/change-password",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Incorrect old password",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newPassword\": \"12345678\",\r\n    \"oldPassword\": \"12341234\"\r\n} ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/change-password",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "433"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b1-S8VsQ5d6eWZu88pYnA+aELm5xp4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:54:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Incorrect old password\",\n    \"errorSources\": [\n        {\n            \"type\": \"ApiError\",\n            \"details\": \"Incorrect old password\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 401\n    },\n    \"stack\": \"Error: Incorrect old password\\n    at D:\\\\Projects\\\\Kerry-Soeun\\\\kerry-backend\\\\src\\\\app\\\\modules\\\\auth\\\\auth.service.ts:125:11\\n    at Generator.next (<anonymous>)\\n    at fulfilled (D:\\\\Projects\\\\Kerry-Soeun\\\\kerry-backend\\\\src\\\\app\\\\modules\\\\auth\\\\auth.service.ts:28:58)\"\n}"
+						},
+						{
+							"name": "Change Password",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newPassword\": \"12341234\",\r\n    \"oldPassword\": \"12345678\"\r\n} ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/change-password",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-hUjdGh/npfSb6DaJvwCsb5gu9SU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 05:56:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Password changed successfully\",\n    \"data\": {\n        \"message\": \"Password changed successfully\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify Otp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{creator}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"shipon.services@gmail.com\",\r\n    \"verificationCode\": 8363\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localApi}}/auth/verify-otp",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"auth",
+								"verify-otp"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verify Otp",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"shipon.services@gmail.com\",\r\n    \"verificationCode\": 8363\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApi}}/auth/verify-otp",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"verify-otp"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-xLlz5N64s84lHn0ZSbUOn+KtdGs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 06:02:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Check your email!\",\n    \"data\": {\n        \"message\": \"OTP verification successful\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{creator}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localApi}}/auth/me",
+							"host": [
+								"{{localApi}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localApi}}/auth/me",
+									"host": [
+										"{{localApi}}"
+									],
+									"path": [
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "358"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"166-nLbQPL8HZVKwi93XxT01/6lkyNI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jul 2025 06:19:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User profile retrieved successfully\",\n    \"data\": {\n        \"id\": \"6864c7ad889960a49c8d62b7\",\n        \"firstName\": \"Shipon Hossen\",\n        \"lastName\": \"Raju\",\n        \"role\": \"USER\",\n        \"phoneNumber\": \"5665454464\",\n        \"lat\": 0,\n        \"lon\": 0,\n        \"status\": \"ACTIVE\",\n        \"email\": \"shipon.services@gmail.com\",\n        \"profileImage\": \"\",\n        \"createdAt\": \"2025-07-02T05:46:21.965Z\",\n        \"updatedAt\": \"2025-07-02T06:02:07.446Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localApi",
+			"value": "http://localhost:5005/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "liveApi",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "creator",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "driver",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
