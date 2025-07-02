@@ -1,5 +1,5 @@
 {
-  "name": "magdalena-backend",
+  "name": "starter-node-prisma-websocket",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
