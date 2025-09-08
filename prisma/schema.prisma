@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// =====================================
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BLOCKED
+  DELETED
+}
+
+model User {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String         @unique
+  profileImage  String?        @default("")
+  password      String
+  fcmToken      String?        @default("")
+  bio           String
+  handicap      String
+  playingStyle  String
+  homeClub      String
+  clubCrest     String
+  preferredTime String
+  role          UserRole
+  status        UserStatus     @default(ACTIVE)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  // relations
+  chatsSent     Chat[]         @relation("SenderRelation")
+  chatsReceived Chat[]         @relation("ReceiverRelation")
+  roomsSent     Room[]         @relation("SenderRelation")
+  roomsReceived Room[]         @relation("ReceiverRelation")
+  notifications Notification[]
+  Match         Match[]        @relation("MatchCreated")
+  UserMatch     UserMatch[]
+
+  @@map("users")
+}
+
+model Course {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Match     Match[]
+
+  @@map("course")
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  otp       Int
+  expiry    DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("otps")
+}
+
+model Match {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  teeTime   DateTime
+  status    MatchStatus
+  capacity  Int         @default(4)
+  courseId  String      @db.ObjectId
+  isOpen    Boolean     @default(true)
+  courses   Course      @relation(fields: [courseId], references: [id])
+  creatorId String      @db.ObjectId
+  creator   User        @relation("MatchCreated", fields: [creatorId], references: [id])
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  UserMatch UserMatch[]
+
+  @@map("match")
+}
+
+// Join model for many-to-many relationship between User and Match
+model UserMatch {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String   @db.ObjectId
+  user     User     @relation(fields: [userId], references: [id])
+  matchId  String   @db.ObjectId
+  Match    Match    @relation(fields: [matchId], references: [id])
+  joinedAt DateTime @default(now())
+
+  @@map("user-match")
+}
+
+
+
+enum MatchStatus {
+  PENDING
+  UPCOMING
+  COMPLETED
+}
+
+enum NotificationType {
+  DEFAULT
+}
+
+model Notification {
+  id        String           @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String           @db.ObjectId
+  user      User             @relation(fields: [userId], references: [id])
+  title     String
+  body      String
+  type      NotificationType
+  postId    String?          @db.ObjectId
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  @@map("notifications")
+}
+
+model Chat {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  senderId   String   @db.ObjectId
+  receiverId String   @db.ObjectId
+  message    String
+  roomId     String   @db.ObjectId
+  images     String[]
+  isRead     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  sender     User     @relation("SenderRelation", fields: [senderId], references: [id])
+  receiver   User     @relation("ReceiverRelation", fields: [receiverId], references: [id])
+  room       Room     @relation(fields: [roomId], references: [id])
+
+  @@map("chats")
+}
+
+model Room {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  senderId   String   @db.ObjectId
+  receiverId String   @db.ObjectId
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  sender     User     @relation("SenderRelation", fields: [senderId], references: [id])
+  receiver   User     @relation("ReceiverRelation", fields: [receiverId], references: [id])
+  chat       Chat[]
+
+  @@map("rooms")
+}
