@@ -23,7 +23,12 @@ router.put(
 );
 
 // *!update  user
-router.put("/:id", auth(), userController.updateUser);
+router.put(
+  "/profile-update",
+  auth(),
+  fileUploader.uploadSingle,
+  userController.updateUser
+);
 
 // delete me
 router.delete("/delete-me", auth(), userController.deleteMe);

@@ -943,6 +943,371 @@
               "body": "{\n    \"success\": true,\n    \"message\": \"User profile retrieved successfully\",\n    \"data\": {\n        \"id\": \"68bfa948cd261f63293310ab\",\n        \"name\": \"Shipon Hossen\",\n        \"role\": \"USER\",\n        \"status\": \"ACTIVE\",\n        \"email\": \"shipon.services@gmail.com\",\n        \"profileImage\": \"\",\n        \"createdAt\": \"2025-09-09T04:12:56.208Z\",\n        \"updatedAt\": \"2025-09-09T04:51:14.569Z\",\n        \"bio\": null,\n        \"handicap\": null,\n        \"preferredTime\": null,\n        \"homeClub\": null,\n        \"clubCrest\": null,\n        \"playingStyle\": null\n    }\n}"
             }
           ]
+        },
+        {
+          "name": "User Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{userToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseApi}}/auth/logout",
+              "host": ["{{baseApi}}"],
+              "path": ["auth", "logout"]
+            }
+          },
+          "response": [
+            {
+              "name": "User Logout",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseApi}}/auth/logout",
+                  "host": ["{{baseApi}}"],
+                  "path": ["auth", "logout"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "57"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"39-s+bvp6gwCLjpQAuIyJNBBI0a0Rc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Sep 2025 05:00:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User Successfully logged out\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Profile Image Change",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{userToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/D:/web-test/profile_martin.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseApi}}/users/profile-image",
+              "host": ["{{baseApi}}"],
+              "path": ["users", "profile-image"]
+            }
+          },
+          "response": [
+            {
+              "name": "Profile Image Change",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": "/D:/web-test/profile_martin.png"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseApi}}/users/profile-image",
+                  "host": ["{{baseApi}}"],
+                  "path": ["users", "profile-image"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "381"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"17d-oMOPitZGCNJwNjlgDvosaz+IIDc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Sep 2025 05:05:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User updated successfully!\",\n    \"data\": {\n        \"id\": \"68bfa948cd261f63293310ab\",\n        \"name\": \"Shipon Hossen\",\n        \"email\": \"shipon.services@gmail.com\",\n        \"profileImage\": \"https://nyc3.digitaloceanspaces.com/smtech-space/nathancloud/1757394308607_4fb08cef-cd53-4c89-ac42-a07c5e95ee04_profile_martin.png\",\n        \"createdAt\": \"2025-09-09T04:12:56.208Z\",\n        \"updatedAt\": \"2025-09-09T05:05:10.973Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "User Profile Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{userToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/D:/web-test/profile_martin.png"
+                },
+                {
+                  "key": "data",
+                  "value": "{\n    \"name\": \"John Doe\",\n    \"bio\": \"Avid golfer and tech enthusiast.\",\n    \"handicap\": \"10.5\",\n    \"playingStyle\": \"Aggressive\",\n    \"homeClub\": \"Malahide Golf Club\",\n    \"clubCrest\": \"https://example.com/club-crest.jpg\",\n    \"preferredTime\": \"Morning\"\n}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseApi}}/users/profile-update",
+              "host": ["{{baseApi}}"],
+              "path": ["users", "profile-update"]
+            }
+          },
+          "response": [
+            {
+              "name": "New Request",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": "/D:/web-test/profile_martin.png"
+                    },
+                    {
+                      "key": "data",
+                      "value": "{\n    \"name\": \"John Doe\",\n    \"bio\": \"Avid golfer and tech enthusiast.\",\n    \"handicap\": \"10.5\",\n    \"playingStyle\": \"Aggressive\",\n    \"homeClub\": \"Malahide Golf Club\",\n    \"clubCrest\": \"https://example.com/club-crest.jpg\",\n    \"preferredTime\": \"Morning\"\n}",
+                      "type": "text"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseApi}}/users/profile-update",
+                  "host": ["{{baseApi}}"],
+                  "path": ["users", "profile-update"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "570"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"23a-LLk+BD2Is+NAPTviK8vLbCtSylY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 09 Sep 2025 05:20:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User updated successfully!\",\n    \"data\": {\n        \"id\": \"68bfa948cd261f63293310ab\",\n        \"name\": \"John Doe\",\n        \"email\": \"shipon.services@gmail.com\",\n        \"profileImage\": \"https://nyc3.digitaloceanspaces.com/smtech-space/nathancloud/1757394308607_4fb08cef-cd53-4c89-ac42-a07c5e95ee04_profile_martin.png\",\n        \"bio\": \"Avid golfer and tech enthusiast.\",\n        \"handicap\": \"10.5\",\n        \"playingStyle\": \"Aggressive\",\n        \"homeClub\": \"Malahide Golf Club\",\n        \"clubCrest\": \"https://example.com/club-crest.jpg\",\n        \"preferredTime\": \"Morning\",\n        \"createdAt\": \"2025-09-09T04:12:56.208Z\",\n        \"updatedAt\": \"2025-09-09T05:20:58.951Z\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Delete User/Me",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{userToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "name": "Delete User/Me",
+          "originalRequest": {
+            "method": "GET",
+            "header": []
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "208"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"d0-joBtl2DQpS/WhO7oHLzsGxtgK3Y\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 09 Sep 2025 05:24:19 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"message\": \"User Deleted successfully!\",\n    \"data\": {\n        \"id\": \"68bfa948cd261f63293310ab\",\n        \"name\": \"John Doe\",\n        \"email\": \"shipon.services@gmail.com\",\n        \"status\": \"DELETED\",\n        \"updatedAt\": \"2025-09-09T05:24:19.359Z\"\n    }\n}"
         }
       ]
     }
