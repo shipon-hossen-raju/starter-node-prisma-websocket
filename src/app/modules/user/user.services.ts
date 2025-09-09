@@ -28,29 +28,32 @@ const createUserIntoDb = async (
   const result = await prisma.$transaction(async (tx) => {
     const existingUser = await tx.user.findFirst({
       where: {
-        email: userPayload.email,
+        email: payload.email,
       },
     });
 
     if (existingUser) {
-      if (existingUser.email === userPayload.email) {
+      if (existingUser.email === payload.email) {
         throw new ApiError(
           400,
-          `User with this email ${userPayload.email} already exists`
+          `User with this email ${payload.email} already exists`
         );
       }
     }
     const hashedPassword: string = await bcrypt.hash(
-      userPayload.password,
+      payload.password,
       Number(config.bcrypt_salt_rounds)
     );
 
+    const userData = {
+      name: payload.name,
+      email: payload.email,
+      password: hashedPassword,
+      fcmToken: payload.fcmToken,
+    };
+
     const createdUser = await tx.user.create({
-      data: {
-        ...userPayload,
-        password: hashedPassword,
-        fcmToken: userPayload.fcmToken,
-      },
+      data: userData,
       select: {
         id: true,
         email: true,

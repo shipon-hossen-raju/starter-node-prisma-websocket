@@ -4,12 +4,14 @@ import config from "../config";
 const emailSender = async (email: string, html: string, subject: string) => {
   if (!config.emailSender.host) return;
 
+  // console.log("config.emailSender ", config.emailSender);
+
   const transporter = nodemailer.createTransport({
     host: config.emailSender.host,
     port: config.emailSender.port,
     secure: config.emailSender.secure,
     auth: {
-      user: config.emailSender.user,
+      user: config.emailSender.mail,
       pass: config.emailSender.pass,
     },
   } as TransportOptions);

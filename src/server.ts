@@ -3,7 +3,7 @@ import config from "./config";
 
 import prisma from "./shared/prisma";
 import app from "./app";
-import { setupWebSocket } from "./socket/setupWebSocket";
+// import { setupWebSocket } from "./socket/setupWebSocket";
 
 let server: Server;
 
@@ -12,7 +12,7 @@ async function startServer() {
     console.log("Server is listiening on port ", config.port);
   });
 
-  setupWebSocket(server)
+  // setupWebSocket(server)
 }
 
 async function main() {
