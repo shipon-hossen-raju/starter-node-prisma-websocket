@@ -91,12 +91,17 @@ const getMyProfile = async (userId: string) => {
       id: true,
       name: true,
       role: true,
-      phoneNumber: true,
       status: true,
       email: true,
       profileImage: true,
       createdAt: true,
       updatedAt: true,
+      bio: true,
+      handicap: true,
+      preferredTime: true,
+      homeClub: true,
+      clubCrest: true,
+      playingStyle: true
     },
   });
 
@@ -106,24 +111,33 @@ const getMyProfile = async (userId: string) => {
 // change password
 const changePassword = async (
   userId: string,
-  newPassword: string,
-  oldPassword: string
+  payload: {
+    oldPassword: string;
+    newPassword: string;
+    confirmNewPassword: string;
+  }
 ) => {
+  console.log("payload ", payload);
   const user = await prisma.user.findUnique({
     where: { id: userId },
   });
-
   if (!user) {
     throw new ApiError(404, "User not found");
   }
+  if (payload.newPassword !== payload.confirmNewPassword) {
+    throw new ApiError(400, "Password and confirm password do not match!");
+  }
 
-  const isPasswordValid = await bcrypt.compare(oldPassword, user?.password);
+  const isPasswordValid = await bcrypt.compare(
+    payload.oldPassword,
+    user?.password
+  );
 
   if (!isPasswordValid) {
     throw new ApiError(401, "Incorrect old password");
   }
 
-  const hashedPassword = await bcrypt.hash(newPassword, 12);
+  const hashedPassword = await bcrypt.hash(payload.newPassword, 12);
 
   await prisma.user.update({
     where: {
@@ -136,7 +150,7 @@ const changePassword = async (
       id: true,
     },
   });
-  return { message: "Password changed successfully" };
+  return 
 };
 
 // forgot password
@@ -215,7 +229,7 @@ const verifyOtp = async (payload: {
     where: { email: payload.email },
   });
 
-  return { message: "OTP verification successful" };
+  return;
 };
 
 // reset password

@@ -44,13 +44,8 @@ const getMyProfile = catchAsync(async (req: Request, res: Response) => {
 
 // change password
 const changePassword = catchAsync(async (req: Request, res: Response) => {
-  const { oldPassword, newPassword } = req.body;
+  const result = await AuthServices.changePassword(req.user.id, req.body);
 
-  const result = await AuthServices.changePassword(
-    req.user.id,
-    newPassword,
-    oldPassword
-  );
   sendResponse(res, {
     success: true,
     statusCode: 201,
@@ -90,7 +85,7 @@ const verifyOtp = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Check your email!",
+    message: "Otp verified!",
     data: result,
   });
 });

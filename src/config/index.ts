@@ -21,7 +21,8 @@ export default {
     host: process.env.MAIL_HOST,
     port: process.env.MAIL_PORT,
     secure: process.env.MAIL_SECURE,
-    user: process.env.MAIL_EMAIL,
+    user: process.env.MAIL_USER,
+    mail: process.env.MAIL_EMAIL,
     pass: process.env.MAIL_APP_PASS,
   },
 
