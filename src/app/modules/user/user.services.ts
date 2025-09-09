@@ -189,7 +189,9 @@ const updateProfile = async (req: Request) => {
 };
 
 // update user data into database by id fir admin
-const updateUserIntoDb = async (payload: IUser, id: string) => {
+const updateUserIntoDb = async (req: Request) => {
+  const id = req.user.id;
+  const payload = JSON.parse(req.body.data);
   const userInfo = await prisma.user.findUniqueOrThrow({
     where: {
       id: id,
@@ -198,17 +200,38 @@ const updateUserIntoDb = async (payload: IUser, id: string) => {
   if (!userInfo)
     throw new ApiError(httpStatus.NOT_FOUND, "User not found with id: " + id);
 
+  if (req.file) {
+    const image = (await fileUploader.uploadToDigitalOcean(req.file)).Location;
+    payload.profileImage = image;
+  }
+
+  const updatedData = {
+    name: payload.name || userInfo.name,
+    profileImage: payload.profileImage || userInfo.profileImage,
+    bio: payload.bio || userInfo.bio,
+    handicap: payload.handicap || userInfo.handicap,
+    playingStyle: payload.playingStyle || userInfo.playingStyle,
+    homeClub: payload.homeClub || userInfo.homeClub,
+    clubCrest: payload.clubCrest || userInfo.clubCrest,
+    preferredTime: payload.preferredTime || userInfo.preferredTime,
+  };
+
   const result = await prisma.user.update({
     where: {
       id: userInfo.id,
     },
-    data: payload,
+    data: updatedData,
     select: {
       id: true,
       name: true,
       email: true,
       profileImage: true,
-      role: true,
+      bio: true,
+      handicap: true,
+      playingStyle: true,
+      homeClub: true,
+      clubCrest: true,
+      preferredTime: true,
       createdAt: true,
       updatedAt: true,
     },
@@ -235,6 +258,14 @@ const profileImageChange = async (req: Request) => {
       },
       data: {
         profileImage: image,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        profileImage: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
   }
