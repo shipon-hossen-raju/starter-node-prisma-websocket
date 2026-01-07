@@ -28,12 +28,6 @@ model User {
   profileImage  String?        @default("")
   password      String
   fcmToken      String?        @default("")
-  bio           String?
-  handicap      String?
-  playingStyle  String?
-  homeClub      String?
-  clubCrest     String?
-  preferredTime String?
   role          UserRole       @default(USER)
   status        UserStatus     @default(ACTIVE)
   createdAt     DateTime       @default(now())
@@ -44,10 +38,6 @@ model User {
   roomsSent     Room[]         @relation("SenderRelation")
   roomsReceived Room[]         @relation("ReceiverRelation")
   notifications Notification[]
-  Match         Match[]        @relation("MatchCreated")
-  UserMatch     UserMatch[]
-  Friend1       Friend[]       @relation("Friend1")
-  Friend2       Friend[]       @relation("Friend2")
 
   @@map("users")
 }
@@ -63,77 +53,6 @@ model Otp {
   @@map("otps")
 }
 
-model Friend {
-  id        String       @id @default(auto()) @map("_id") @db.ObjectId
-  friend1Id String       @db.ObjectId
-  friend1   User         @relation("Friend1", fields: [friend1Id], references: [id])
-  friend2Id String       @db.ObjectId
-  friend2   User         @relation("Friend2", fields: [friend2Id], references: [id])
-  status    FriendStatus @default(PENDING)
-  createdAt DateTime     @default(now())
-
-  @@map("friend")
-}
-
-enum FriendStatus {
-  CONFIRMED
-  PENDING
-  CANCEL
-}
-
-model Course {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Match     Match[]
-
-  @@map("course")
-}
-
-model Match {
-  id        String      @id @default(auto()) @map("_id") @db.ObjectId
-  teeTime   DateTime
-  capacity  Int         @default(4)
-  isOpen    Boolean     @default(true)
-  courseId  String      @db.ObjectId
-  courses   Course      @relation(fields: [courseId], references: [id])
-  creatorId String      @db.ObjectId
-  creator   User        @relation("MatchCreated", fields: [creatorId], references: [id])
-  status    MatchStatus
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  UserMatch UserMatch[]
-
-  @@map("match")
-}
-
-enum MatchStatus {
-  PENDING
-  UPCOMING
-  COMPLETED
-}
-
-// Join model for many-to-many relationship between User and Match
-model UserMatch {
-  id        String          @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String          @db.ObjectId
-  user      User            @relation(fields: [userId], references: [id])
-  matchId   String          @db.ObjectId
-  Match     Match           @relation(fields: [matchId], references: [id])
-  status    UserMatchStatus @default(PENDING)
-  joinedAt  DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
-  createdAt DateTime        @default(now())
-
-  @@map("user-match")
-}
-
-enum UserMatchStatus {
-  ACCEPTED
-  PENDING
-  CANCELED
-}
 
 model Notification {
   id        String           @id @default(auto()) @map("_id") @db.ObjectId
