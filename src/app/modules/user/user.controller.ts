@@ -49,7 +49,7 @@ const updateProfile = catchAsync(
 // *! update user role and account status
 const updateUser = catchAsync(async (req: Request, res: Response) => {
   const result = await userService.updateUserIntoDb(req);
-  
+
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

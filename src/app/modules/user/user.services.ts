@@ -11,7 +11,7 @@ import { IPaginationOptions } from "../../../interfaces/paginations";
 import emailSender from "../../../shared/emailSender";
 import prisma from "../../../shared/prisma";
 import { userSearchAbleFields } from "./user.costant";
-import { IUser, IUserFilterRequest } from "./user.interface";
+import { IUserFilterRequest } from "./user.interface";
 import { OtpHtml } from "./user.mail";
 
 // Create a new user in the database.
