@@ -5,10 +5,12 @@ import {
 } from "@aws-sdk/client-s3";
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
+import httpStatus from "http-status";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import streamifier from "streamifier";
 import { v4 as uuidv4 } from "uuid";
+import ApiError from "../errors/ApiErrors";
 
 dotenv.config();
 
@@ -50,6 +52,30 @@ const uploadFile = upload.single("file");
 // Upload multiple images
 const uploadMultipleImage = upload.fields([{ name: "images", maxCount: 15 }]);
 const uploadMultipleFiles = upload.fields([{ name: "files", maxCount: 15 }]);
+
+const bookUploader = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (file.fieldname === "bookPdf") {
+      // only allow PDF for bookPdf
+      if (file.mimetype === "application/pdf") {
+        cb(null, true);
+      } else {
+        cb(new ApiError(httpStatus.CONFLICT, "bookPdf must be a PDF file"));
+      }
+    } else {
+      // allow thumbnail or any other field
+      cb(null, true);
+    }
+  },
+});
+
+// bookUpload
+const bookUpload = bookUploader.fields([
+  { name: "thumbnail", maxCount: 1 },
+  // bookPdf type only pdf
+  { name: "bookPdf", maxCount: 1 },
+]);
 
 // ✅ Fixed Cloudinary Upload (Now supports buffer)
 const uploadToCloudinary = async (
@@ -125,6 +151,7 @@ export const fileUploader = {
   uploadMultipleFiles,
   uploadMultipleImage,
   uploadFile,
+  bookUpload,
   cloudinaryUpload,
   uploadToDigitalOcean,
   uploadToCloudinary,

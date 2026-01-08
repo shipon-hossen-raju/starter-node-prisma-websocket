@@ -1,14 +1,20 @@
 import { NextFunction, Request, Response } from "express";
 
-import config from "../../config";
 import { JwtPayload, Secret } from "jsonwebtoken";
+import config from "../../config";
 
 import httpStatus from "http-status";
 import ApiError from "../../errors/ApiErrors";
 import { jwtHelpers } from "../../helpars/jwtHelpers";
 import prisma from "../../shared/prisma";
 
-const auth = (...roles: string[]) => {
+const auth = ({
+  roles = [],
+  isOptional = false,
+}: {
+  roles?: string[];
+  isOptional?: boolean;
+}) => {
   return async (
     req: Request & { user?: any },
     res: Response,
@@ -16,6 +22,17 @@ const auth = (...roles: string[]) => {
   ) => {
     try {
       const token = req.headers.authorization?.split(" ")[1];
+
+      if (!token && !isOptional) {
+        throw new ApiError(httpStatus.UNAUTHORIZED, "You are not authorized!");
+      }
+
+      // if optional and token is not provided
+      if (!token && isOptional) {
+        req.user = null;
+        next();
+        return;
+      }
 
       if (!token) {
         throw new ApiError(httpStatus.UNAUTHORIZED, "You are not authorized!");
