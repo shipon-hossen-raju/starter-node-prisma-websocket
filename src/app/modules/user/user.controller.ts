@@ -60,7 +60,6 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
 
 // *! update user role and account status
 const profileImageChange = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
   const result = await userService.profileImageChange(req);
 
   sendResponse(res, {

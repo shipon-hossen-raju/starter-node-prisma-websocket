@@ -201,19 +201,13 @@ const updateUserIntoDb = async (req: Request) => {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found with id: " + id);
 
   if (req.file) {
-    const image = (await fileUploader.uploadToDigitalOcean(req.file)).Location;
+    const image = (await fileUploader.uploadToCloudinary(req.file)).Location;
     payload.profileImage = image;
   }
 
   const updatedData = {
     name: payload.name || userInfo.name,
     profileImage: payload.profileImage || userInfo.profileImage,
-    bio: payload.bio || userInfo.bio,
-    handicap: payload.handicap || userInfo.handicap,
-    playingStyle: payload.playingStyle || userInfo.playingStyle,
-    homeClub: payload.homeClub || userInfo.homeClub,
-    clubCrest: payload.clubCrest || userInfo.clubCrest,
-    preferredTime: payload.preferredTime || userInfo.preferredTime,
   };
 
   const result = await prisma.user.update({
@@ -226,12 +220,6 @@ const updateUserIntoDb = async (req: Request) => {
       name: true,
       email: true,
       profileImage: true,
-      bio: true,
-      handicap: true,
-      playingStyle: true,
-      homeClub: true,
-      clubCrest: true,
-      preferredTime: true,
       createdAt: true,
       updatedAt: true,
     },
@@ -250,7 +238,7 @@ const updateUserIntoDb = async (req: Request) => {
 const profileImageChange = async (req: Request) => {
   const file = req.file;
   if (file) {
-    const image = (await fileUploader.uploadToDigitalOcean(file)).Location;
+    const image = (await fileUploader.uploadToCloudinary(file)).Location;
 
     return await prisma.user.update({
       where: {
@@ -275,6 +263,10 @@ const profileImageChange = async (req: Request) => {
 
 // delete user from db
 const deleteUserFromDb = async (id: string) => {
+  if (!id) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "User id is required");
+  }
+  
   const user = await prisma.user.findUnique({
     where: { id },
   });
