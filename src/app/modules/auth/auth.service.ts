@@ -95,13 +95,7 @@ const getMyProfile = async (userId: string) => {
       email: true,
       profileImage: true,
       createdAt: true,
-      updatedAt: true,
-      bio: true,
-      handicap: true,
-      preferredTime: true,
-      homeClub: true,
-      clubCrest: true,
-      playingStyle: true
+      updatedAt: true,  
     },
   });
 

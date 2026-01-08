@@ -1,14 +1,14 @@
-import multer from "multer";
-import { v4 as uuidv4 } from "uuid";
 import {
-  S3Client,
-  PutObjectCommand,
   ObjectCannedACL,
+  PutObjectCommand,
+  S3Client,
 } from "@aws-sdk/client-s3";
 import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
-import streamifier from "streamifier"; 
 import dotenv from "dotenv";
+import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import streamifier from "streamifier";
+import { v4 as uuidv4 } from "uuid";
 
 dotenv.config();
 
@@ -37,7 +37,6 @@ const upload = multer({ storage });
 const cloudinaryStorage = new CloudinaryStorage({
   cloudinary,
   params: {
-  
     public_id: (req, file) => `${Date.now()}_${file.originalname}`,
   },
 });
@@ -52,14 +51,10 @@ const uploadFile = upload.single("file");
 const uploadMultipleImage = upload.fields([{ name: "images", maxCount: 15 }]);
 const uploadMultipleFiles = upload.fields([{ name: "files", maxCount: 15 }]);
 
-// Upload profile and banner images
-const updateProfile = upload.fields([
-  { name: "profile", maxCount: 1 },
-  { name: "banner", maxCount: 1 },
-]);
-
 // ✅ Fixed Cloudinary Upload (Now supports buffer)
-const uploadToCloudinary = async (file: Express.Multer.File): Promise<{ Location: string; public_id: string }> => {
+const uploadToCloudinary = async (
+  file: Express.Multer.File
+): Promise<{ Location: string; public_id: string }> => {
   if (!file) {
     throw new Error("File is required for uploading.");
   }
@@ -129,7 +124,6 @@ export const fileUploader = {
   uploadSingle,
   uploadMultipleFiles,
   uploadMultipleImage,
-  updateProfile,
   uploadFile,
   cloudinaryUpload,
   uploadToDigitalOcean,

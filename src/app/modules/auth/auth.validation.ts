@@ -6,6 +6,12 @@ const changePasswordValidationSchema = z.object({
   confirmNewPassword: z.string().min(1, "Confirm New Password is required"),
 });
 
-export const authValidation={
-    changePasswordValidationSchema
-}
+const resetPasswordValidationSchema = z.object({
+  password: z.string().min(1, "Password is required"),
+  email: z.string().email("Invalid email address").min(1, "Email is required"),
+});
+
+export const authValidation = {
+  changePasswordValidationSchema,
+  resetPasswordValidationSchema,
+};
