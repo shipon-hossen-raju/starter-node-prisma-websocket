@@ -17,11 +17,11 @@ router.post(
 // user logout route
 router.post("/logout", AuthController.logoutUser);
 
-router.get("/me", auth(), AuthController.getMyProfile);
+router.get("/me", auth({}), AuthController.getMyProfile);
 
 router.put(
   "/change-password",
-  auth(),
+  auth({}),
   validateRequest(authValidation.changePasswordValidationSchema),
   AuthController.changePassword
 );

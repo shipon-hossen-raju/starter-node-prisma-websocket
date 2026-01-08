@@ -24,15 +24,15 @@ const router = express.Router();
 // );
 
 // get my notifications
-router.get("/me", auth(), notificationController.getMyNotifications);
+router.get("/me", auth({}), notificationController.getMyNotifications);
 
 // get my notifications
-router.get("/", auth(), notificationController.getAllNotifications);
+router.get("/", auth({}), notificationController.getAllNotifications);
 
 // get specific notifications
 router.get(
   "/:notificationId",
-  auth(),
+  auth({}),
   notificationController.getSingleNotifications
 );
 

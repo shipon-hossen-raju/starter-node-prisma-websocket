@@ -17,7 +17,7 @@ router.post(
 // image upload
 router.put(
   "/profile-image",
-  auth(),
+  auth({}),
   fileUploader.uploadSingle,
   userController.profileImageChange
 );
@@ -25,12 +25,12 @@ router.put(
 // *!update  user
 router.put(
   "/profile-update",
-  auth(),
+  auth({}),
   fileUploader.uploadSingle,
   userController.updateUser
 );
 
 // delete me
-router.delete("/delete-me", auth(), userController.deleteMe);
+router.delete("/delete-me", auth({}), userController.deleteMe);
 
 export const userRoutes = router;
