@@ -1,0 +1,60 @@
+enum UserRole {
+  ADMIN
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BLOCKED
+  DELETED
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
+}
+
+model User {
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  firstName        String
+  lastName         String?
+  phoneNumber      String?
+  email            String     @unique
+  profileImage     String?    @default("")
+  showroomTitle    String?
+  password         String?
+  latitude         Float?
+  longitude        Float?
+  referralCode     String     @unique
+  useReferralCode  String?    @default("")
+  isUseReferralPay Boolean    @default(false)
+  role             UserRole   @default(USER)
+  status           UserStatus @default(ACTIVE)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  lastLogin        DateTime?  @default(now())
+  lastActive       DateTime?  @default(now())
+  isVerified       Boolean    @default(false)
+  isEmailVerified  Boolean    @default(false)
+  isAgree          Boolean    @default(true)
+
+  @@map("users")
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  otp       String
+  expiry    DateTime
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("otps")
+}
+
+enum VerifyType {
+  PASSPORT
+  G_ID_CARD
+}
